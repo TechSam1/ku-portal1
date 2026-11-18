@@ -1,17 +1,13 @@
 'use strict';
 /*
- * «Онлайн-экзамен» (EXAM SYNC, github.com/StephCurrysvg/exam-sync), встроенный в KU Portal.
- * Логика сервера синхронизации перенесена из exam-sync/server.js без изменений поведения,
- * только смонтирована под префиксом (по умолчанию /exam-sync), чтобы портал и экзамены
- * работали одним сервисом (один деплой на Render, один адрес).
+ * Сервер синхронизации «Онлайн-экзамена» (основа — github.com/StephCurrysvg/exam-sync).
  *
  *   GET  <base>/             — интерфейс (index.html)
  *   GET  <base>/api/state    — всё состояние
  *   GET  <base>/api/events   — SSE с полным состоянием после каждого изменения
  *   POST <base>/api/sync     — { changes: { <col>: { up: [...], del: [...] } } }
  *
- * Данные: dataFile (по умолчанию data/exam-sync.json, в .gitignore). При первом запуске
- * берутся из seedFile (exam-sync/seed.json — демо-аккаунты и тесты из исходного репозитория).
+ * Данные: dataFile (data/exam-sync.json, не в git). При первом запуске — демо из seed.json.
  */
 const fs = require('fs');
 const path = require('path');

@@ -6,19 +6,13 @@
 <meta name="theme-color" content="#1C1C1E">
 <meta name="color-scheme" content="dark">
 <script>/* Тема = цвет × режим (+ размер текста, «меньше анимации», контраст).
-   Цвет: incampus (Kozybayev University) | intl (University of Arizona) | emerald | violet | coral | graphite | pink
-   (последние пять — палитры KU Portal). Режим: auto (родной: inCampus — тёмный, остальные — светлые) | light | dark | system.
-   Из KU Portal приходят ?from=ku-portal&theme=<цвет>&mode=<режим>&fs=<sm|md|lg|xl>&still=<0|1> — хранятся на сессию
-   вкладки (sessionStorage edu-*-ku), иначе — выбор пользователя (localStorage edu-theme / edu-mode, edu-prefs:<id>).
-   Итог: data-theme = incampus | incampus-light | intl | intl-dark; для палитр портала ещё data-accent=<цвет>. */
+   Цвет: incampus (Kozybayev University) | intl (University of Arizona) | emerald | violet | coral | graphite | pink.
+   Режим: auto (родной: inCampus — тёмный, остальные — светлые) | light | dark | system.
+   Итог: data-theme = incampus | incampus-light | intl | intl-dark; для доп. палитр ещё data-accent=<цвет>. */
 window.EDU_COLORS=['incampus','intl','emerald','violet','coral','graphite','pink'];
 window.eduThemeOf=function(c,m){var sd=!!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);var d=m==='dark'||(m==='system'&&sd)||(m!=='light'&&m!=='system'&&m!=='dark'&&c==='incampus');return c==='intl'?(d?'intl-dark':'intl'):(d?'incampus':'incampus-light')};
 window.eduPaint=function(c,m){var r=document.documentElement;if(EDU_COLORS.indexOf(c)<0)c='incampus';r.dataset.theme=eduThemeOf(c,m);if(c==='incampus'||c==='intl')delete r.dataset.accent;else r.dataset.accent=c};
-try{var q=new URLSearchParams(location.search),t=q.get('theme'),md=q.get('mode'),fs=q.get('fs'),st=q.get('still');
-if(q.get('from')==='ku-portal'){if(EDU_COLORS.indexOf(t)>=0)sessionStorage.setItem('edu-theme-ku',t);if(md==='light'||md==='dark'||md==='system')sessionStorage.setItem('edu-mode-ku',md);else sessionStorage.removeItem('edu-mode-ku');
-if(['sm','md','lg','xl'].indexOf(fs)>=0)sessionStorage.setItem('edu-fs-ku',fs);if(st==='0'||st==='1')sessionStorage.setItem('edu-still-ku',st)}
-var c=sessionStorage.getItem('edu-theme-ku')||localStorage.getItem('edu-theme'),m=sessionStorage.getItem('edu-mode-ku')||localStorage.getItem('edu-mode')||'auto';
-eduPaint(c,m);var f=sessionStorage.getItem('edu-fs-ku');if(f&&f!=='md')document.documentElement.dataset.fs=f;if(sessionStorage.getItem('edu-still-ku')==='1')document.documentElement.dataset.still=''}catch(e){document.documentElement.dataset.theme='incampus'}</script>
+try{eduPaint(localStorage.getItem('edu-theme'),localStorage.getItem('edu-mode')||'auto')}catch(e){document.documentElement.dataset.theme='incampus'}</script>
 <title>Онлайн-экзамен</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%2305a4ba'/><path d='M3 10l9-4.5 9 4.5-9 4.5z M7 12v4c2.5 1.8 7.5 1.8 10 0v-4' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linejoin='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,7 +92,7 @@ eduPaint(c,m);var f=sessionStorage.getItem('edu-fs-ku');if(f&&f!=='md')document.
   --chip-mid-bg:#FFF1D6;--chip-mid-tx:#A86F00;--chip-mid-bd:#FFF1D6;
   --locked:#18283F;--called-bg:rgba(242,184,75,.08);--toast-bg:#E8EEF7;--toast-tx:#0A1424;
 }}
-/* ===== Палитры KU Portal (data-accent): изумрудный, фиолетовый, коралловый, графит, розовый.
+/* ===== Дополнительные палитры (data-accent): изумрудный, фиолетовый, коралловый, графит, розовый.
    Основа — светлая (incampus-light) или тёмная (incampus) тема, меняются только акцентные цвета. ===== */
 :root[data-accent="emerald"]{--acc:#1f9d6b;--acc-deep:#0f6b47;--acc-l:#3cc18c}
 :root[data-accent="violet"]{--acc:#6d4bd8;--acc-deep:#452c9c;--acc-l:#9b82ee}
@@ -668,16 +662,6 @@ button.brand{border:0;background:none;padding:2px 6px 2px 0;margin:0;color:inher
 }
 @media (max-width:360px){.st-seg button span{font-size:11px}.st-themes{gap:6px}}
 @media (prefers-reduced-motion:reduce){.setp-b,.st-sw i{transition:none}}
-/* возврат в KU Portal (см. KU_BACK) */
-.ku-back{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 10px 0 6px;border-radius:var(--rs);background:var(--ac-dd);color:var(--ac);font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap;flex:none}
-.ku-back:hover{background:var(--ac-d);color:var(--ac-h)}
-.ku-back svg.i{width:18px;height:18px}
-.ku-back.inline{height:auto;padding:2px 8px 2px 4px;font-size:15px;vertical-align:middle}
-.ku-login{margin:14px 0 4px;color:var(--tx2);font-size:15px;text-align:center}
-@media (max-width:420px){.ku-back:not(.inline) span{display:none}.ku-back:not(.inline){padding:0 8px}}
-html.from-ku #app,html.from-ku .topbar{animation:kuIn .45s cubic-bezier(.2,.8,.2,1) both}
-@keyframes kuIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){html.from-ku #app,html.from-ku .topbar{animation:none}}
 .login{min-height:calc(100vh - 140px);display:flex;align-items:center;justify-content:center;padding:32px 0}
 .login-card{width:100%;max-width:440px;padding:32px 28px}
 .login-brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}
@@ -892,12 +876,7 @@ html.from-ku #app,html.from-ku .topbar{animation:kuIn .45s cubic-bezier(.2,.8,.2
 
 /* ---------- язык интерфейса (RU / EN / KK); содержимое тестов не переводится ---------- */
 const LANG_KEY = 'edu-lang', LANGS = ['ru', 'en', 'kk'];
-// Из KU Portal приходит ?from=ku-portal&lang=<язык портала> — запоминаем на сессию вкладки (как тему), иначе — выбор пользователя
-let LANG = (() => { try{
-  const q = new URLSearchParams(location.search), ql = q.get('lang');
-  if(q.get('from') === 'ku-portal' && LANGS.includes(ql)) sessionStorage.setItem('edu-lang-ku', ql);
-  const l = sessionStorage.getItem('edu-lang-ku') || localStorage.getItem(LANG_KEY); return LANGS.includes(l) ? l : 'ru';
-}catch(e){ return 'ru'; } })();
+let LANG = (() => { try{ const l = localStorage.getItem(LANG_KEY); return LANGS.includes(l) ? l : 'ru'; }catch(e){ return 'ru'; } })();
 // L(ru, en, kk): если казахского перевода нет — показываем русский текст
 const L = (ru, en, kk) => LANG === 'en' ? en : LANG === 'kk' && kk != null ? kk : ru;
 const LOC = () => ({ en:'en-GB', kk:'kk-KZ' })[LANG] || 'ru-RU';
@@ -908,36 +887,33 @@ const langSwitch = () => `<div class="lang" role="group" aria-label="Язык и
   `<button class="${LANG === k ? 'on' : ''}" data-act="lang" data-l="${k}" lang="${k}" aria-pressed="${LANG === k}" aria-label="${nm}" title="${nm}">${sh}</button>`).join('')}</div>`;
 function setLang(l){
   if(!LANGS.includes(l) || l === LANG) return;
-  LANG = l; try{ localStorage.setItem(LANG_KEY, l); sessionStorage.removeItem('edu-lang-ku'); }catch(e){}
+  LANG = l; try{ localStorage.setItem(LANG_KEY, l); }catch(e){}
   applyLang(); render();
   const b = document.querySelector(`.lang [data-l="${l}"]`); if(b) b.focus({preventScroll:true});
 }
-/* ---------- оформление: цвет (inCampus / Arizona / палитры портала) × режим (авто / светлый / тёмный / системный) ---------- */
+/* ---------- оформление: цвет (inCampus / Arizona / доп. палитры) × режим (авто / светлый / тёмный / системный) ---------- */
 const THEME_KEY = 'edu-theme', MODE_KEY = 'edu-mode', THEMES = window.EDU_COLORS, MODES = ['auto', 'light', 'dark', 'system'];
 const FSIZES = ['sm', 'md', 'lg', 'xl'];
-const ssGet = k => { try{ return sessionStorage.getItem(k); }catch(e){ return null; } };
 const lsGet = k => { try{ return localStorage.getItem(k); }catch(e){ return null; } };
-const ssDel = k => { try{ sessionStorage.removeItem(k); }catch(e){} };
 const colorOf = v => THEMES.includes(v) ? v : 'incampus';
-let COLOR = colorOf(ssGet('edu-theme-ku') || lsGet(THEME_KEY));
-let MODE = (() => { const m = ssGet('edu-mode-ku') || lsGet(MODE_KEY); return MODES.includes(m) ? m : 'auto'; })();
+let COLOR = colorOf(lsGet(THEME_KEY));
+let MODE = (() => { const m = lsGet(MODE_KEY); return MODES.includes(m) ? m : 'auto'; })();
 let THEME = document.documentElement.dataset.theme || 'incampus'; // итоговая тема: incampus | incampus-light | intl | intl-dark
 const COLOR_INFO = {
   incampus: ['inCampus · Kozybayev', () => 'Kozybayev University'],
   intl: ['University of Arizona', () => L('Международный кампус', 'International Campus', 'Халықаралық кампус')],
-  emerald: [() => L('Изумрудный', 'Emerald', 'Изумруд'), () => 'KU Portal'],
-  violet: [() => L('Фиолетовый', 'Violet', 'Күлгін'), () => 'KU Portal'],
-  coral: [() => L('Коралловый', 'Coral', 'Маржан'), () => 'KU Portal'],
-  graphite: [() => L('Графит', 'Graphite', 'Графит'), () => 'KU Portal'],
-  pink: [() => L('Розовый', 'Pink', 'Қызғылт'), () => 'KU Portal'],
+  emerald: [() => L('Изумрудный', 'Emerald', 'Изумруд'), () => L('Дополнительный цвет', 'Extra color', 'Қосымша түс')],
+  violet: [() => L('Фиолетовый', 'Violet', 'Күлгін'), () => L('Дополнительный цвет', 'Extra color', 'Қосымша түс')],
+  coral: [() => L('Коралловый', 'Coral', 'Маржан'), () => L('Дополнительный цвет', 'Extra color', 'Қосымша түс')],
+  graphite: [() => L('Графит', 'Graphite', 'Графит'), () => L('Дополнительный цвет', 'Extra color', 'Қосымша түс')],
+  pink: [() => L('Розовый', 'Pink', 'Қызғылт'), () => L('Дополнительный цвет', 'Extra color', 'Қосымша түс')],
 };
 const callv = v => typeof v === 'function' ? v() : v;
 const themeName = t => callv((COLOR_INFO[t] || COLOR_INFO.incampus)[0]);
 const modeName = m => ({ auto: L('Авто', 'Auto', 'Авто'), light: L('Светлая', 'Light', 'Ашық'), dark: L('Тёмная', 'Dark', 'Қараңғы'), system: L('Как в системе', 'System', 'Жүйедегідей') })[m];
 const isDark = () => THEME === 'incampus' || THEME === 'intl-dark';
-/* размер текста и «меньше анимации»: значение из портала (на вкладку) важнее, пока пользователь не выберет своё */
-function effFs(){ const s = ssGet('edu-fs-ku'); if(FSIZES.includes(s)) return s; const p = prefsGet().fs; return FSIZES.includes(p) ? p : 'md'; }
-function effStill(){ const s = ssGet('edu-still-ku'); if(s === '0' || s === '1') return s === '1'; return !!prefsGet().lessMotion; }
+function effFs(){ const p = prefsGet().fs; return FSIZES.includes(p) ? p : 'md'; }
+function effStill(){ return !!prefsGet().lessMotion; }
 function applyTheme(){
   window.eduPaint(COLOR, MODE);
   const r = document.documentElement; THEME = r.dataset.theme;
@@ -948,15 +924,14 @@ function applyTheme(){
   if(tc) tc.content = getComputedStyle(r).getPropertyValue('--top-bg').trim() || '#FFFFFF';
   if(cs) cs.content = isDark() ? 'dark' : 'light';
 }
-/* ручной выбор важнее темы, пришедшей из портала */
 function setTheme(t){
   if(!THEMES.includes(t) || t === COLOR) return;
-  COLOR = t; try{ localStorage.setItem(THEME_KEY, t); }catch(e){} ssDel('edu-theme-ku');
+  COLOR = t; try{ localStorage.setItem(THEME_KEY, t); }catch(e){}
   applyTheme(); render(); refreshSettings();
 }
 function setMode(m){
   if(!MODES.includes(m) || m === MODE) return;
-  MODE = m; try{ localStorage.setItem(MODE_KEY, m); }catch(e){} ssDel('edu-mode-ku');
+  MODE = m; try{ localStorage.setItem(MODE_KEY, m); }catch(e){}
   applyTheme(); render(); refreshSettings();
 }
 if(window.matchMedia){ const mq = matchMedia('(prefers-color-scheme: dark)'); const f = () => { if(MODE === 'system'){ applyTheme(); render(); refreshSettings(); } }; mq.addEventListener ? mq.addEventListener('change', f) : mq.addListener && mq.addListener(f); }
@@ -1111,7 +1086,6 @@ function settingsHTML(){
   const u = ME, fs = effFs(), still = effStill();
   const colorCard = t => `<button class="st-theme ${COLOR === t ? 'on' : ''}" data-color="${t}" role="radio" aria-checked="${COLOR === t}">
       <span class="st-prev st-prev-${t}"><i></i><i></i><i></i></span><b>${esc(themeName(t))}</b><small>${esc(callv(COLOR_INFO[t][1]))}</small></button>`;
-  const fromKu = ssGet('edu-theme-ku') || ssGet('edu-mode-ku') || ssGet('edu-fs-ku') || ssGet('edu-still-ku');
   const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
   const sysSub = perm === 'granted' ? L('Разрешено в браузере', 'Allowed in the browser', 'Браузерде рұқсат етілген')
     : perm === 'denied' ? L('Запрещено в настройках браузера', 'Blocked in browser settings', 'Браузер баптауларында тыйым салынған')
@@ -1127,7 +1101,7 @@ function settingsHTML(){
         <div class="st-themes six" role="radiogroup">${THEMES.map(colorCard).join('')}</div>
         <div class="st-lbl">${L('Тема', 'Mode', 'Тақырып')}</div>
         <div class="st-seg" role="radiogroup">${MODES.map(m => `<button class="${MODE === m ? 'on' : ''}" data-mode="${m}" role="radio" aria-checked="${MODE === m}">${ico(m === 'light' ? 'sun' : m === 'dark' ? 'moon' : m === 'system' ? 'monitor' : 'palette')}<span>${esc(modeName(m))}</span></button>`).join('')}</div>
-        <p class="st-note">${L('«Авто» — родная тема цвета: inCampus тёмная, остальные светлые.', '“Auto” uses the native look: inCampus is dark, the others are light.', '«Авто» — түстің өз тақырыбы: inCampus қараңғы, қалғандары ашық.')}${fromKu ? ' ' + L('Сейчас применено оформление из KU Portal — выбор здесь его заменит.', 'The KU Portal look is applied now — choosing here replaces it.', 'Қазір KU Portal безендіруі қолданылған — мұнда таңдау оны ауыстырады.') : ''}</p>
+        <p class="st-note">${L('«Авто» — родная тема цвета: inCampus тёмная, остальные светлые.', '“Auto” uses the native look: inCampus is dark, the others are light.', '«Авто» — түстің өз тақырыбы: inCampus қараңғы, қалғандары ашық.')}</p>
         <div class="st-lbl">${L('Размер текста', 'Text size', 'Мәтін өлшемі')}</div>
         <div class="st-seg" role="radiogroup">${[['sm', L('Мелкий', 'Small', 'Кіші')], ['md', L('Обычный', 'Normal', 'Қалыпты')], ['lg', L('Крупный', 'Large', 'Үлкен')], ['xl', L('Очень крупный', 'Extra large', 'Өте үлкен')]].map(([k, n]) => `<button class="${fs === k ? 'on' : ''}" data-fs="${k}" role="radio" aria-checked="${fs === k}">${ico('txt')}<span>${n}</span></button>`).join('')}</div>
         ${setRowSw('contrast', 'contrast', L('Высокая контрастность', 'High contrast', 'Жоғары контраст'), L('Темнее текст и рамки', 'Darker text and borders', 'Мәтін мен жиектер қоюырақ'))}
@@ -1161,8 +1135,8 @@ function bindSettings(ov){
   ov.querySelectorAll('[data-color]').forEach(b => b.onclick = () => setTheme(b.dataset.color));
   ov.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => setMode(b.dataset.mode));
   ov.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => { setLang(b.dataset.lang); refreshSettings(); });
-  ov.querySelectorAll('[data-fs]').forEach(b => b.onclick = () => { prefSet('fs', b.dataset.fs); ssDel('edu-fs-ku'); applyTheme(); refreshSettings(); });
-  ov.querySelectorAll('[data-still]').forEach(b => b.onclick = () => { prefSet('lessMotion', !effStill()); ssDel('edu-still-ku'); applyTheme(); refreshSettings(); });
+  ov.querySelectorAll('[data-fs]').forEach(b => b.onclick = () => { prefSet('fs', b.dataset.fs); applyTheme(); refreshSettings(); });
+  ov.querySelectorAll('[data-still]').forEach(b => b.onclick = () => { prefSet('lessMotion', !effStill()); applyTheme(); refreshSettings(); });
   ov.querySelectorAll('[data-sw]').forEach(b => b.onclick = async () => {
     const k = b.dataset.sw, on = !b.classList.contains('on');
     if(k === 'sysNotif' && on && !(await askNotifPermission())){ refreshSettings(); return; }
@@ -1748,7 +1722,6 @@ function renderNav(){
 function renderTop(){
   const u = ME;
   document.getElementById('topbar').innerHTML = `<div class="tb-in">
-    ${KU_BACK ? `${kuBackBtn()}<span class="tb-sep" aria-hidden="true"></span>` : ''}
     ${u ? `<button class="brand home" data-act="tab" data-v="exam" aria-label="${L('Онлайн-экзамен — на главную', 'Online Exam — home', 'Онлайн емтихан — басты бетке')}" title="${L('На главную', 'Home', 'Басты бетке')}">` : '<span class="brand">'}<span class="brand-ic">${ico('cap')}</span><span class="brand-t">${L('Онлайн-экзамен', 'Online Exam', 'Онлайн емтихан')}</span>${u ? '</button>' : '</span>'}
     <span class="grow"></span>${langSwitch()}
     ${u ? `<span class="tb-sep hide-s" aria-hidden="true"></span><button class="me" data-act="account" title="${L('Профиль и настройки', 'Profile and settings', 'Профиль және баптаулар')}" aria-label="${L('Профиль и настройки', 'Profile and settings', 'Профиль және баптаулар')}: ${esc(u.name)} · ${roleName(u)}"><span class="avatar ${u.role}">${esc(initials(u.name))}</span><span class="me-t"><b>${esc(u.name)}</b><small>${roleName(u)}</small></span><span class="me-gear" aria-hidden="true">${ico('gear')}</span></button>` : ''}</div>`;
@@ -1801,31 +1774,6 @@ function tick(){
   if(ga.length){ const left = gaUntil() - now; if(left <= 0 && S.view === 'grade'){ render(); return; } ga.forEach(el => el.textContent = fmtT(left)); }
 }
 
-/* ---------- переход из KU Portal ----------
-   Портал открывает сайт как /?from=ku-portal&back=<адрес портала>. Адрес возврата запоминаем на сессию вкладки
-   и убираем параметры из строки адреса. back принимается только http(s) и только с разрешённых хостов,
-   чтобы ссылку нельзя было использовать для перехода на чужой сайт. */
-const KU_BACK_KEY = 'ku-portal-back';
-const KU_HOSTS = ['ku-portalnew.onrender.com', 'ku-portal.onrender.com', 'sakeda-hub.github.io'];
-const kuHostOk = h => h === location.hostname || KU_HOSTS.includes(h) || h === 'localhost' || h === '127.0.0.1' || /^(10|192\.168)\.[\d.]+$/.test(h) || /^172\.(1[6-9]|2\d|3[01])\.[\d.]+$/.test(h);
-const KU_BACK = (() => {
-  let back = null, fresh = false;
-  try{
-    const q = new URLSearchParams(location.search);
-    if(q.get('from') === 'ku-portal'){
-      fresh = true;
-      const u = new URL(q.get('back') || '');
-      if(/^https?:$/.test(u.protocol) && kuHostOk(u.hostname)){ back = u.href; sessionStorage.setItem(KU_BACK_KEY, back); }
-      q.delete('from'); q.delete('back'); q.delete('theme'); q.delete('mode'); q.delete('lang'); q.delete('fs'); q.delete('still');
-      history.replaceState(history.state, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash);
-    }
-  }catch(e){}
-  if(!back){ try{ back = sessionStorage.getItem(KU_BACK_KEY); }catch(e){} }
-  if(fresh) document.documentElement.classList.add('from-ku');
-  return back;
-})();
-const kuBackBtn = cls => KU_BACK ? `<a class="ku-back ${cls || ''}" href="${esc(KU_BACK)}" title="${L('Вернуться в KU Portal', 'Back to KU Portal', 'KU Portal-ға оралу')}">${ico('back')}<span>KU Portal</span></a>` : '';
-
 /* ---------- вход ---------- */
 function vLogin(){
   return `<div class="login"><section class="widget login-card">
@@ -1836,7 +1784,6 @@ function vLogin(){
       <div class="lg-err" id="lg-err" role="alert"></div>
       <button class="btn block" type="submit">${L('Войти', 'Log in', 'Кіру')}</button>
     </form>
-    ${KU_BACK ? `<div class="ku-login">${L('Перешли из портала университета?', 'Came from the university portal?', 'Университет порталынан келдіңіз бе?')} ${kuBackBtn('inline')}</div>` : ''}
     <details class="demo"><summary>${L('Демо-аккаунты', 'Demo accounts', 'Демо-аккаунттар')}</summary>
       <div class="kv"><div><span>${L('Студент', 'Student', 'Студент')}</span><b>user, user1–user4 / 1</b></div><div><span>${L('Преподаватель', 'Teacher', 'Оқытушы')}</span><b>teacher / admin</b></div></div>
       <div class="fhint">${L('Откройте две вкладки и войдите в разные аккаунты — изменения видны сразу.', 'Open two tabs and sign in to different accounts — changes show up instantly.', 'Екі қойынды ашып, әртүрлі аккаунттарға кіріңіз — өзгерістер бірден көрінеді.')}</div></details>
@@ -2972,7 +2919,7 @@ window.addEventListener('storage', e => {
     const d = loadDB(); if(!d) return; notifyDiff(D, d); D = d;
     if(ME){ const u = userById(ME.id); if(!u){ doLogout(); toast(L('Ваш аккаунт удалён', 'Your account was deleted', 'Сіздің аккаунтыңыз жойылды')); return; } ME = u; }
     if(LIVE[S.view] || S.view === 'login'){ if(fieldFocused() || document.querySelector('.ov')) S.syncPending = true; else render(); }
-  } else if((e.key === THEME_KEY || e.key === MODE_KEY) && !ssGet('edu-theme-ku') && !ssGet('edu-mode-ku')){ COLOR = colorOf(lsGet(THEME_KEY)); const m = lsGet(MODE_KEY); MODE = MODES.includes(m) ? m : 'auto'; applyTheme(); render(); refreshSettings(); }
+  } else if(e.key === THEME_KEY || e.key === MODE_KEY){ COLOR = colorOf(lsGet(THEME_KEY)); const m = lsGet(MODE_KEY); MODE = MODES.includes(m) ? m : 'auto'; applyTheme(); render(); refreshSettings(); }
   else if(e.key === GA_KEY && S.view === 'grade' && !document.querySelector('.ov')) render();
 });
 setInterval(() => { tick(); if(S.syncPending && !fieldFocused() && !document.querySelector('.ov')) render(); }, 1000);
