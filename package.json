@@ -1,8 +1,8 @@
 {
-  "name": "ku-portal",
+  "name": "online-exam",
   "version": "1.0.0",
   "private": true,
-  "description": "Kozybayev University portal — студенческий/преподавательский портал с локальным AI-помощником",
+  "description": "Онлайн-экзамен: тесты, writing, speaking-очередь, ведомость",
   "scripts": {
     "start": "node server.js"
   },
