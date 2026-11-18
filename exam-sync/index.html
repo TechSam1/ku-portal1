@@ -2161,17 +2161,12 @@ function resumeBanner(roomId){
     <div class="sub">${r ? esc(r.title) + ' · ' : ''}${L('тест не завершён · отвечено ', 'unfinished · answered ', 'тест аяқталмаған · жауап берілді ')}${answeredCount(pr)}${L(' из ', ' of ', ' / ')}${pr.order.length}${tmById(pr.timerId) ? ` · ${L('осталось', 'time left', 'қалды')} <b class="num" data-tm="${pr.timerId}">${fmtT(Math.max(0, tmLeft(tmById(pr.timerId))))}</b>` : ''}</div></div>
     <div class="btns"><button class="btn sec sm" data-act="dropRun">${L('Сбросить', 'Discard', 'Тастау')}</button><button class="btn sm" data-act="resume">${ico('play')}${L('Продолжить', 'Resume', 'Жалғастыру')}</button></div></div>`;
 }
-const howWidget = () => W(L('Как проходит экзамен', 'How the exam works', 'Емтихан қалай өтеді'), `<ol class="steps">
-  <li><b>${L('Тест и письменная работа', 'Test and writing', 'Тест және жазбаша жұмыс')}</b><span>${L('Выполните их в любом порядке. Каждый тест проходится один раз.', 'Do them in any order. Each test can be taken once.', 'Оларды кез келген ретпен орындаңыз. Әр тест бір рет қана тапсырылады.')}</span></li>
-  <li><b>${L('Спикинг открывается', 'Speaking unlocks', 'Спикинг ашылады')}</b><span>${L('Только после того, как сданы тесты и письменная работа.', 'Only after the tests and writing are submitted.', 'Тек тесттер мен жазбаша жұмыс тапсырылғаннан кейін.')}</span></li>
-  <li><b>${L('Очередь', 'Queue', 'Кезек')}</b><span>${L('Встаньте в очередь — преподаватель вызовет вас и засечёт время.', 'Join the queue — the teacher will call you and time your answer.', 'Кезекке тұрыңыз — оқытушы сізді шақырып, уақытты белгілейді.')}</span></li>
-  <li><b>${L('Баллы', 'Scores', 'Ұпай')}</b><span>${L('Появятся по каждой части после проверки преподавателем.', 'Appear for each part after the teacher grades it.', 'Оқытушы тексергеннен кейін әр бөлім бойынша пайда болады.')}</span></li></ol>`);
 function vExamS(){
   const rooms = D.rooms.filter(r => r.open || progress(r, ME.id).started);
   const list = rooms.length ? `<div class="cards">${rooms.map(roomCardS).join('')}</div>`
     : emptyBox('door', L('Экзаменов пока нет', 'No exams yet', 'Әзірге емтихандар жоқ'), L('Когда преподаватель откроет экзамен, он появится здесь.', 'When the teacher opens an exam, it will appear here.', 'Оқытушы емтиханды ашқанда, ол осында пайда болады.'));
   return header(L('Экзамен', 'Exam', 'Емтихан'), { sub:L('Сдавайте работы преподавателю: тесты, письменная часть и спикинг', 'Submit your work to the teacher: tests, writing and speaking', 'Жұмыстарды оқытушыға тапсырыңыз: тесттер, жазбаша бөлім және спикинг') }) +
-    cols(myCallAlert() + resumeBanner() + W(L('Мои экзамены', 'My exams', 'Менің емтихандарым'), list), howWidget());
+    cols(myCallAlert() + resumeBanner() + W(L('Мои экзамены', 'My exams', 'Менің емтихандарым'), list), );
 }
 
 /* --- комната (студент) --- */
