@@ -583,7 +583,7 @@ body.has-dock #toast{bottom:calc(var(--dock-h) + var(--safe) + 10px)}
   .grab{display:none}
 }
 
-/* ===== Экзамен: вход, роли, комнаты, очередь, баллы, обучение (в стиле Brightspace) ===== */
+/* ===== Экзамен: вход, роли, комнаты, очередь, баллы (в стиле Brightspace) ===== */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .hide-s{display:none}
 @media (min-width:700px){.hide-s{display:inline}}
@@ -750,25 +750,24 @@ button.brand{border:0;background:none;padding:2px 6px 2px 0;margin:0;color:inher
 .q-btns .btn{flex:1 1 auto}
 .donerow{display:flex;align-items:center;gap:10px;padding:8px 4px;border-radius:var(--rs);cursor:pointer}
 .donerow:hover{background:var(--s2)}
-.ulist{display:flex;flex-direction:column;margin-bottom:12px}
-.urow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
-.urow .grow b{display:block;font-size:16px}
-.urow .grow small{display:block;font-size:13px;color:var(--tx2)}
 /* таблицы: прогресс и лист баллов */
-.tbl-wrap{overflow-x:auto;margin:0 calc(-1 * var(--pad));padding:0 var(--pad);-webkit-overflow-scrolling:touch}
-.sheet{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+.tbl-wrap{overflow:visible}
+.sheet{width:100%;border-collapse:collapse;font-size:15px}
 .sheet th,.sheet td{padding:10px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
 .sheet thead th{font-size:14px;font-weight:700;color:var(--tx2);background:var(--s2);border-bottom:1px solid var(--line2);white-space:nowrap}
 .sheet thead th small{display:block;font-weight:400;font-size:12px}
 .sheet tbody tr.tap{cursor:pointer}
 .sheet tbody tr.tap:hover{background:var(--s2)}
 .sheet tfoot th,.sheet tfoot td{font-weight:700;background:var(--s2);border-bottom:0}
-.sheet .who{display:flex;align-items:center;gap:10px;font-weight:700;white-space:nowrap}
+.sheet .who{display:flex;align-items:center;gap:10px;font-weight:700}
 .sheet .who small{display:block;font-weight:400;font-size:12px;color:var(--tx2)}
 .sheet .cell{font-size:14px;color:var(--tx2);margin-bottom:4px;white-space:nowrap}
 .sheet .cell svg.i{width:15px;height:15px;vertical-align:-2px;margin-right:3px}
 .sheet .tot{white-space:nowrap}.sheet .tot b{font-size:17px}.sheet .tot small{color:var(--tx2)}
-.sheet .acts{white-space:nowrap;text-align:right}.sheet .acts .btn{margin-left:6px}
+.sheet .acts{text-align:right}.sheet .acts .btn{margin:3px 0 3px 6px}
+.below{display:grid;gap:0 40px;align-items:start}
+@media (min-width:1000px){.below{grid-template-columns:1fr 1fr}}
+@media (max-width:699px){.sheet th,.sheet td{padding:8px 4px}.sheet{font-size:13px}.sheet thead th{white-space:normal;font-size:12px}.sheet .who .avatar{display:none}.sheet .cell{white-space:normal;font-size:12px}.sheet .tot b{font-size:15px}.sheet .tot small{display:none}.sheet .acts .btn{padding:0 6px;min-height:34px;font-size:12px}.sheet .acts .btn svg.i{display:none}}
 .pcell{display:flex;align-items:center;gap:10px}
 .pcell .meter .m-body{width:64px}
 .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:var(--gap)}
@@ -806,54 +805,9 @@ button.brand{border:0;background:none;padding:2px 6px 2px 0;margin:0;color:inher
 .pick b{display:block;font-weight:700}
 .pick small{display:block;color:var(--tx2);font-size:14px}
 .pick:has(input:checked){border-color:var(--ac);background:var(--ac-dd)}
-/* обучение */
-.ltools{margin-bottom:14px;align-items:center}
-.ltools .search{margin:0}
-.rule{border:1px solid var(--line2);border-radius:var(--rb);margin-bottom:10px;background:var(--s1)}
-.rule summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px 16px;font-size:18px;font-weight:700}
-.rule summary::-webkit-details-marker{display:none}
-.rule[open] summary .chev{transform:rotate(180deg)}
-.rule summary:hover{color:var(--ac)}
-.rule-b{padding:0 16px 16px}
-.rule-t{white-space:pre-wrap;font-size:16px}
-.ex{margin-top:12px;background:var(--s2);border-left:4px solid var(--bar);border-radius:var(--rs);padding:10px 14px;white-space:pre-wrap;font-style:italic}
-.ex b{display:block;font-style:normal;font-size:13px;color:var(--tx2);text-transform:uppercase;letter-spacing:.04em}
-.ed-btns{display:inline-flex;gap:2px;flex:none}
-.rule-b .ed-btns{margin-top:10px}
-.idiom .ttl{font-weight:700;color:var(--ac)}
-.idiom .mean{font-size:16px;margin-top:4px}
-.ex-i{font-style:italic;color:var(--tx2);font-size:15px;margin-top:8px}
-.wlist{display:flex;flex-direction:column}
-.wrow{display:flex;align-items:center;gap:10px;padding:12px 4px;border-bottom:1px solid var(--line)}
-.wrow b{font-size:18px;margin-right:10px}
-.wrow .tr{font-size:16px;color:var(--tx)}
-.wrow small{display:block;color:var(--tx2);font-style:italic;font-size:14px}
-.flash{width:100%;min-height:180px;border:1px solid var(--line2);border-radius:var(--rb);background:var(--s2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center;cursor:pointer;transition:background .15s}
-.flash:hover{border-color:var(--ac)}
-.flash.flip{background:var(--s1);border-color:var(--ac);box-shadow:inset 0 0 0 1px var(--ac)}
-.fl-f{font-size:30px;font-weight:700;color:var(--ac)}
-.fl-b{font-size:24px;font-weight:700}
-.flash small{color:var(--tx2);font-size:14px}
-.fc-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
-.quiz-start,.quiz-res{text-align:center;padding:10px 0}
-.quiz-start .sico{margin:0 auto 12px}
-.quiz-start h3{margin:0 0 6px;font-size:22px;font-weight:400}
-.quiz-start p{color:var(--tx2);margin:0 0 12px}
-.quiz-start .btn,.quiz-res>.btn{margin-top:16px}
-.quiz-res .big{font-size:56px;font-weight:700;line-height:1}
-.quiz-res .ql{font-size:20px;font-weight:700;margin:6px 0 16px}
-.quiz-res .rv{text-align:left}
-.qz-top{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
-.opt.right{border-color:var(--ok);background:var(--ok-d);box-shadow:inset 0 0 0 1px var(--ok)}
-.opt.right .mk{border-color:var(--ok);background:var(--ok)}
-.opt.wrong{border-color:var(--low);background:var(--low-d)}
-.opt.wrong .mk{border-color:var(--low)}
-.opt.dim{opacity:.6}
-.opt:disabled{cursor:default}
-.qz-fb{font-weight:700;margin:4px 0 12px}
 /* печать листа баллов */
 @media print{
-  .topbar,.navbar,.dock,#toast,.fchips,header.top .ib,header.top .btn,.l-side{display:none!important}
+  .topbar,.navbar,.dock,#toast,.fchips,header.top .ib,header.top .btn,.l-side,.below{display:none!important}
   body,html{background:#fff}
   .layout{display:block!important}
   .widget{padding:0;margin-bottom:24px}
@@ -1313,7 +1267,7 @@ const LS_KEY = 'edu-exam-v1', SES_KEY = 'edu-exam-session', GA_KEY = 'edu-exam-g
 const GA_TTL = 3600000; // пароль для выставления баллов действует 1 час
 let D = null, ME = null;
 const S = { view:'login', params:{}, draft:null, draftBase:'', rdraft:null, rdraftBase:'', run:null, pendingRun:null, errors:[], rvTab:'all', animKey:'',
-  edTab:'rooms', learnTab:'rules', learnQ:'', fc:null, quiz:null, scoreRoom:'', syncPending:false };
+  edTab:'rooms', scoreRoom:'', syncPending:false };
 Object.defineProperty(S, 'tests', { get:() => D.tests });
 Object.defineProperty(S, 'attempts', { get:() => D.attempts });
 
@@ -1323,7 +1277,7 @@ function freshDB(){
             { id:'u-teacher', login:'teacher', password:'admin', name:'Преподаватель', role:'teacher' },
             // дополнительные студенты — чтобы проверять очередь и вызов нескольких учеников
             ...[1, 2, 3, 4].map(i => ({ id:'u-student' + i, login:'user' + i, password:'1', name:'Студент ' + i, role:'student' })) ],
-    tests:examTests(false), rooms:[demoRoom()], attempts:[], writings:[], queue:[], grades:[], timers:[], learn:seedLearn(), quiz:{} };
+    tests:examTests(false), rooms:[demoRoom()], attempts:[], writings:[], queue:[], grades:[], timers:[] };
 }
 function normRoom(r){
   const n = newRoom();
@@ -1333,9 +1287,7 @@ function normRoom(r){
 }
 function normDB(d){ // защита от неполных данных
   ['users','tests','rooms','attempts','writings','queue','grades','timers'].forEach(k => { if(!Array.isArray(d[k])) d[k] = []; });
-  if(!d.learn || typeof d.learn !== 'object') d.learn = seedLearn();
-  ['rules','idioms','words'].forEach(k => { if(!Array.isArray(d.learn[k])) d.learn[k] = []; });
-  if(!d.quiz || typeof d.quiz !== 'object') d.quiz = {};
+  delete d.learn; delete d.quiz;
   d.rooms.forEach(normRoom);
   return d;
 }
@@ -1490,49 +1442,6 @@ function demoRoom(){
     writing:{ on:true, prompt:'Write an essay (120–180 words).\nTopic: Is online learning as effective as classroom learning? Give reasons and examples.', minWords:120, max:30 },
     speaking:{ on:true, prompt:'Part 1. Tell me about yourself: your studies and hobbies.\nPart 2. Describe a skill you learned recently. How did you learn it? Why was it useful?\nPart 3. Does technology make learning easier? Why or why not?', minutes:5, max:30 } };
 }
-function seedLearn(){
-  const R = (title, body, example) => ({ id:uid(), title, body, example });
-  const I = (phrase, meaning, example) => ({ id:uid(), phrase, meaning, example });
-  const Wd = (word, translation, example) => ({ id:uid(), word, translation, example });
-  return {
-    rules:[
-      R('Present Simple', 'Регулярные действия, факты, расписания.\nHe / she / it: к глаголу добавляем -s / -es.\nВопрос и отрицание — с do / does, основной глагол без окончания.', 'She works in a bank.\nDoes he play football? — No, he doesn’t.'),
-      R('Present Continuous', 'Действие происходит сейчас или в текущий период; планы на ближайшее будущее.\nam / is / are + глагол-ing.', 'I am writing an essay now.\nWe are meeting the teacher tomorrow.'),
-      R('Past Simple и Present Perfect', 'Past Simple — законченное действие в известный момент прошлого (yesterday, in 2020, ago).\nPresent Perfect — результат важен сейчас, время не указано (ever, never, already, yet, just).', 'I saw this film yesterday.\nI have already seen this film.'),
-      R('Артикли a / an / the', 'a / an — один из многих, упоминается впервые; an — перед гласным звуком (an hour, an apple).\nthe — конкретный, уже известный или единственный в своём роде предмет (the sun).', 'I bought a book. The book is about London.'),
-      R('Условные предложения 0, 1, 2', '0 — общие истины: If + Present, Present.\n1 — реальное будущее: If + Present, will + глагол.\n2 — нереальное настоящее: If + Past, would + глагол.', 'If you heat ice, it melts.\nIf it rains, we will stay at home.\nIf I had more time, I would travel.'),
-      R('Пассивный залог', 'Важно действие, а не тот, кто его совершает.\nbe (в нужном времени) + 3-я форма глагола (V3).', 'The essay was written in an hour.\nNew rules are introduced every year.'),
-      R('Связки для эссе', 'Добавление: moreover, furthermore, in addition.\nПротивопоставление: however, although, on the other hand.\nВывод и следствие: therefore, as a result, in conclusion.', 'Online courses are flexible. However, they require self-discipline.')
-    ],
-    idioms:[
-      I('break the ice', 'растопить лёд, начать разговор', 'A funny story helped to break the ice.'),
-      I('a piece of cake', 'проще простого', 'The grammar test was a piece of cake.'),
-      I('hit the books', 'засесть за учёбу', 'I need to hit the books before the exam.'),
-      I('under the weather', 'неважно себя чувствовать', 'She is a bit under the weather today.'),
-      I('once in a blue moon', 'очень редко', 'He goes to the theatre once in a blue moon.'),
-      I('cost an arm and a leg', 'стоить целое состояние', 'This laptop cost an arm and a leg.'),
-      I('spill the beans', 'проболтаться, выдать секрет', 'Don’t spill the beans about the party!'),
-      I('the ball is in your court', 'теперь ваш ход, решение за вами', 'I have made my offer — the ball is in your court.'),
-      I('get the hang of', 'наловчиться, освоиться', 'You will get the hang of it after a few lessons.'),
-      I('on the same page', 'понимать друг друга, быть в курсе', 'Let’s make sure we are on the same page.'),
-      I('call it a day', 'закончить на сегодня', 'We have done enough — let’s call it a day.'),
-      I('beat around the bush', 'ходить вокруг да около', 'Stop beating around the bush and answer the question.')
-    ],
-    words:[
-      Wd('achieve', 'достигать', 'She achieved excellent results.'), Wd('although', 'хотя', 'Although it was late, we continued.'),
-      Wd('approach', 'подход', 'We need a new approach to learning.'), Wd('benefit', 'польза, выгода', 'Regular practice has many benefits.'),
-      Wd('consider', 'рассматривать, считать', 'Consider both sides of the argument.'), Wd('decrease', 'уменьшаться', 'The number of mistakes decreased.'),
-      Wd('environment', 'окружающая среда', 'We must protect the environment.'), Wd('evidence', 'доказательство', 'There is little evidence for this idea.'),
-      Wd('however', 'однако', 'It is cheap. However, it is not reliable.'), Wd('increase', 'увеличиваться', 'Prices increased last year.'),
-      Wd('influence', 'влияние; влиять', 'Teachers influence their students.'), Wd('issue', 'проблема, вопрос', 'Climate change is a global issue.'),
-      Wd('opportunity', 'возможность', 'Studying abroad is a great opportunity.'), Wd('significant', 'значительный', 'There was a significant improvement.'),
-      Wd('solution', 'решение', 'We found a simple solution.'), Wd('therefore', 'поэтому', 'He was ill; therefore, he stayed at home.'),
-      Wd('require', 'требовать', 'This job requires good English.'), Wd('improve', 'улучшать', 'Reading helps to improve vocabulary.'),
-      Wd('furthermore', 'более того', 'Furthermore, the course is free.'), Wd('challenge', 'вызов, трудная задача', 'Learning a language is a challenge.')
-    ]
-  };
-}
-
 /* ---------- оценивание и валидация ---------- */
 /* ---------- оценивание (чистая функция) ---------- */
 function norm(s, cs){ s = String(s ?? '').trim().replace(/\s+/g,' ').replace(/[’‘`´]/g,"'"); return cs ? s : s.toLowerCase(); }
@@ -1664,9 +1573,9 @@ function withGradeAuth(fn){
 
 /* ---------- навигация (History API: работает системная кнопка «Назад») ---------- */
 const app = document.getElementById('app');
-const NAV_S = [['exam','tests','Экзамен','Exam','Емтихан'],['results','chart','Мои результаты','My results','Нәтижелерім'],['learn','book','Обучение','Learning','Оқу']];
-const NAV_T = [['exam','tests','Экзамен','Exam','Емтихан'],['editorList','edit','Редактор','Editor','Редактор'],['scores','table','Баллы','Scores','Ұпайлар'],['learn','book','Обучение','Learning','Оқу']];
-const NAV_OF = { exam:'exam', room:'exam', run:'exam', grade:'exam', results:'results', learn:'learn', editorList:'editorList', editor:'editorList', roomEditor:'editorList', scores:'scores' };
+const NAV_S = [['exam','tests','Экзамен','Exam','Емтихан'],['results','chart','Мои результаты','My results','Нәтижелерім']];
+const NAV_T = [['exam','tests','Экзамен','Exam','Емтихан'],['editorList','edit','Редактор','Editor','Редактор'],['scores','table','Баллы','Scores','Ұпайлар']];
+const NAV_OF = { exam:'exam', room:'exam', run:'exam', grade:'exam', results:'results', editorList:'editorList', editor:'editorList', roomEditor:'editorList', scores:'scores' };
 const TEACHER_ONLY = { editorList:1, editor:1, roomEditor:1, scores:1, grade:1 };
 const STUDENT_ONLY = { run:1, results:1 };
 let HIST = true;
@@ -1743,8 +1652,7 @@ function render(){
   else if(S.view === 'login') S.view = 'exam';
   if(ME && ((TEACHER_ONLY[S.view] && !isT()) || (STUDENT_ONLY[S.view] && isT()))){ S.view = 'exam'; S.params = {}; }
   tmPresence(false);
-  const V = { login:vLogin, exam: () => isT() ? vExamT() : vExamS(), room: () => isT() ? vRoomT() : vRoomS(), run:vRun, result:vResult, results:vResults,
-    learn:vLearn, editorList:vEditorList, editor:vEditor, roomEditor:vRoomEditor, scores:vScores, grade:vGrade }[S.view] || (() => isT() ? vExamT() : vExamS());
+  const V = { login:vLogin, exam: () => isT() ? vExamT() : vExamS(), room: () => isT() ? vRoomT() : vRoomS(), run:vRun, result:vResult, results:vResults, editorList:vEditorList, editor:vEditor, roomEditor:vRoomEditor, scores:vScores, grade:vGrade }[S.view] || (() => isT() ? vExamT() : vExamS());
   app.innerHTML = V();
   app.className = 'v-' + S.view; document.body.dataset.view = S.view; document.body.dataset.role = ME ? ME.role : '';
   document.body.classList.toggle('has-dock', !!app.querySelector('.dock'));
@@ -1802,7 +1710,7 @@ function doLogin(){
 }
 function doLogout(){
   tmPresence(true);
-  stopTimer(); S.run = null; S.draft = null; S.rdraft = null; S.pendingRun = null; S.quiz = null; S.fc = null;
+  stopTimer(); S.run = null; S.draft = null; S.rdraft = null; S.pendingRun = null;
   ME = null; sesSet(null); applyTheme();
   go('login', {}, {force:true, replace:true});
 }
@@ -2165,8 +2073,8 @@ function vExamS(){
   const rooms = D.rooms.filter(r => r.open || progress(r, ME.id).started);
   const list = rooms.length ? `<div class="cards">${rooms.map(roomCardS).join('')}</div>`
     : emptyBox('door', L('Экзаменов пока нет', 'No exams yet', 'Әзірге емтихандар жоқ'), L('Когда преподаватель откроет экзамен, он появится здесь.', 'When the teacher opens an exam, it will appear here.', 'Оқытушы емтиханды ашқанда, ол осында пайда болады.'));
-  return header(L('Экзамен', 'Exam', 'Емтихан'), { sub:L('Сдавайте работы преподавателю: тесты, письменная часть и спикинг', 'Submit your work to the teacher: tests, writing and speaking', 'Жұмыстарды оқытушыға тапсырыңыз: тесттер, жазбаша бөлім және спикинг') }) +
-    cols(myCallAlert() + resumeBanner() + W(L('Мои экзамены', 'My exams', 'Менің емтихандарым'), list), );
+  return header(L('Экзамен', 'Exam', 'Емтихан')) +
+    myCallAlert() + resumeBanner() + W(L('Мои экзамены', 'My exams', 'Менің емтихандарым'), list);
 }
 
 /* --- комната (студент) --- */
@@ -2178,12 +2086,13 @@ function gradeLine(g, max){
 }
 function partTestS(r, p, n, closed){
   const rows = p.test.tests.map((t, k) => {
-    const a = p.test.atts[k], pend = S.pendingRun && S.pendingRun.roomId === r.id && S.pendingRun.test.id === t.id;
-    const btn = a ? `<button class="btn sec sm" data-act="openRes" data-id="${a.id}">${ico('chart')}${a.percent}% · ${L('разбор', 'review', 'талдау')}</button>`
-      : pend ? `<button class="btn sm" data-act="resume">${ico('play')}${L('Продолжить', 'Resume', 'Жалғастыру')}</button>`
+    const a = p.test.atts[k]; if(a) return '';
+    const pend = S.pendingRun && S.pendingRun.roomId === r.id && S.pendingRun.test.id === t.id;
+    const btn = pend ? `<button class="btn sm" data-act="resume">${ico('play')}${L('Продолжить', 'Resume', 'Жалғастыру')}</button>`
       : `<button class="btn sm" data-act="start" data-id="${t.id}" data-room="${r.id}" ${closed ? 'disabled' : ''}>${ico('play')}${L('Начать', 'Start', 'Бастау')}</button>`;
-    return `<div class="card prow ${a ? 'is-done' : ''}"><div class="row wrap"><div class="grow"><p class="ttl">${a ? ico('check', 'okic') : ''}${esc(t.title)}</p>
-      <div class="meta">${nQ(t.questions.length)}<span class="dot">·</span>${timeTxt(t)}</div></div>${btn}</div></div>`; }).join('');
+    return `<div class="card prow"><div class="row wrap"><div class="grow"><p class="ttl">${esc(t.title)}</p>
+      <div class="meta">${nQ(t.questions.length)}<span class="dot">·</span>${timeTxt(t)}</div></div>${btn}</div></div>`; }).join('')
+    || `<div class="sub">${L('Все тесты сданы.', 'All tests are submitted.', 'Барлық тест тапсырылды.')}</div>`;
   return W(stepTitle(n, 'test'), `<p class="w-p">${L('Каждый тест проходится один раз — после завершения ответы изменить нельзя.', 'Each test can be taken once — answers can’t be changed after finishing.', 'Әр тест бір рет тапсырылады — аяқтағаннан кейін жауаптарды өзгертуге болмайды.')}</p>${rows}${gradeLine(p.grades.test, r.test.max)}`,
     { right: p.test.done ? doneChip() : `<span class="chip">${p.test.n} / ${p.test.of}</span>`, cls:'part' });
 }
@@ -2230,7 +2139,7 @@ function summaryWidget(r, p){
       <b class="num">${g ? fmtN(g.score) : '—'}<small> / ${fmtN(r[k].max)}</small></b></div>`; }).join('');
   const pct = p.anyGraded ? pctOf(p.total, max) : null;
   return W(L('Итог', 'Summary', 'Қорытынды'), `${rows}<div class="sumtotal"><span class="grow">${L('Итого', 'Total', 'Барлығы')}</span><b class="num">${p.anyGraded ? fmtN(p.total) : '—'} / ${fmtN(max)}</b></div>
-    ${meter(pct, 60, {size:'lg', anim:true})}<div class="sub">${p.allGraded ? L('Все части оценены.', 'All parts are graded.', 'Барлық бөлім бағаланды.') : p.anyGraded ? L('Часть баллов ещё не выставлена.', 'Some parts are not graded yet.', 'Кейбір бөлімдерге ұпай әлі қойылмаған.') : L('Баллы появятся после проверки.', 'Scores will appear after grading.', 'Ұпайлар тексерілгеннен кейін пайда болады.')}</div>`);
+    ${meter(pct, 60, {size:'lg', anim:true})}<div class="sub">${p.allGraded ? L('Все части оценены.', 'All parts are graded.', 'Барлық бөлім бағаланды.') : p.anyGraded ? L('Часть баллов ещё не выставлена.', 'Some parts are not graded yet.', 'Кейбір бөлімдерге ұпай әлі қойылмаған.') : ''}</div>`);
 }
 function vRoomS(){
   const r = roomById(S.params.id);
@@ -2240,7 +2149,7 @@ function vRoomS(){
   if(r.test.on) html += partTestS(r, p, ++n, closed);
   if(r.writing.on) html += partWritingS(r, p, ++n, closed);
   if(r.speaking.on) html += partSpeakingS(r, p, ++n, closed);
-  return header(r.title, { back:'exam', sub: r.description ? esc(r.description) : '' }) +
+  return header(r.title, { back:'exam' }) +
     (closed ? `<div class="note top-note">${ico('lock')}<span>${L('Экзамен закрыт преподавателем: новые попытки и сдача недоступны.', 'The teacher has closed this exam: new attempts and submissions are disabled.', 'Емтиханды оқытушы жапты: жаңа әрекеттер мен тапсыру қолжетімсіз.')}</span></div>` : '') +
     cols(resumeBanner(r.id) + html, summaryWidget(r, p));
 }
@@ -2248,21 +2157,14 @@ function vRoomS(){
 /* --- мои результаты --- */
 function vResults(){
   const rooms = D.rooms.filter(r => progress(r, ME.id).started);
-  const mine = D.attempts.filter(a => a.userId === ME.id).sort((a, b) => b.finishedAt - a.finishedAt);
   const rw = rooms.map(r => { const p = progress(r, ME.id);
     return W(esc(r.title), roomParts(r).map(k => { const g = p.grades[k];
         return `<div class="sumrow"><span class="sico sm">${ico(partIcon(k))}</span><span class="grow">${partName(k)}<small>${g ? (g.comment ? esc(g.comment) : L('оценено', 'graded', 'бағаланды')) : partDone(p, k) ? L('на проверке', 'awaiting grading', 'тексеруде') : L('не сдано', 'not submitted', 'тапсырылмаған')}</small></span>
           <b class="num">${g ? fmtN(g.score) : '—'}<small> / ${fmtN(r[k].max)}</small></b></div>`; }).join('') +
       `<div class="sumtotal"><span class="grow">${L('Итого', 'Total', 'Барлығы')}</span><b class="num">${p.anyGraded ? fmtN(p.total) : '—'} / ${fmtN(roomMax(r))}</b></div>
       <button class="btn ghost sm" data-act="openRoom" data-id="${r.id}">${L('Открыть экзамен', 'Open exam', 'Емтиханды ашу')} ${ico('chevR')}</button>`); }).join('');
-  const atts = mine.length ? `<div class="stack">${mine.map(a => { const q = quality(a.percent, a.passPercent), r = roomById(a.roomId);
-    return `<div class="card tap hist" role="button" tabindex="0" data-act="openRes" data-id="${a.id}"><div class="row">
-      <div class="pc"><b class="num ${Q_CLS[q]}">${a.percent}%</b><small>${fmtN(a.score)}/${fmtN(a.max)}</small></div>
-      <div class="grow"><p class="ttl ell">${esc(a.testTitle)}</p><div class="meta">${r ? esc(r.title) + '<span class="dot">·</span>' : ''}${fmtDate(a.finishedAt)}</div></div>${ico('chevR', 'chev')}</div></div>`; }).join('')}</div>`
-    : `<div class="cal-empty">${L('Вы ещё не проходили тесты.', 'You haven’t taken any tests yet.', 'Сіз әлі тест тапсырған жоқсыз.')}</div>`;
-  return header(L('Мои результаты', 'My results', 'Менің нәтижелерім'), { sub:L('Баллы преподавателя по каждой части экзамена', 'Teacher’s scores for each exam part', 'Емтиханның әр бөлімі бойынша оқытушы қойған ұпайлар') }) +
-    cols(rw || W('', emptyBox('chart', L('Результатов пока нет', 'No results yet', 'Әзірге нәтиже жоқ'), L('Начните экзамен — здесь появятся баллы и комментарии преподавателя.', 'Start an exam — the teacher’s scores and comments will appear here.', 'Емтиханды бастаңыз — мұнда оқытушының ұпайлары мен пікірлері пайда болады.'), `<button class="btn" data-act="tab" data-v="exam">${ico('tests')}${L('К экзамену', 'To exams', 'Емтиханға')}</button>`)),
-      W(L('Попытки тестов', 'Test attempts', 'Тест әрекеттері'), atts));
+  return header(L('Мои результаты', 'My results', 'Менің нәтижелерім')) +
+    (rw || W('', emptyBox('chart', L('Результатов пока нет', 'No results yet', 'Әзірге нәтиже жоқ'), L('Начните экзамен — здесь появятся баллы и комментарии преподавателя.', 'Start an exam — the teacher’s scores and comments will appear here.', 'Емтиханды бастаңыз — мұнда оқытушының ұпайлары мен пікірлері пайда болады.'), `<button class="btn" data-act="tab" data-v="exam">${ico('tests')}${L('К экзамену', 'To exams', 'Емтиханға')}</button>`)));
 }
 
 /* --- разбор попытки (общий для студента и преподавателя) --- */
@@ -2340,19 +2242,13 @@ function awayWidget(roomId){
     <div class="fhint">${L('Если студент вышел случайно, остановите время: время вне экзамена не засчитается, он продолжит с того же остатка.', 'If the student left by accident, stop the time: time away won’t count and they continue with the same time left.', 'Студент кездейсоқ шықса, уақытты тоқтатыңыз: емтиханнан тыс уақыт есептелмейді, ол сол қалған уақыттан жалғастырады.')}</div>`,
     { right:`<span class="chip mid">${list.length}</span>`, cls:'awaywidget' });
 }
-function studentsWidget(){
-  const st = students();
-  return W(L('Студенты', 'Students', 'Студенттер'), (st.length ? `<div class="ulist">${st.map(u => `<div class="urow"><span class="avatar sm">${esc(initials(u.name))}</span><div class="grow"><b class="ell">${esc(u.name)}</b><small>${L('логин', 'login', 'логин')}: ${esc(u.login)}</small></div>
-      <button class="ib sm ghost" data-act="userMenu" data-id="${u.id}" aria-label="${L('Действия со студентом', 'Student actions', 'Студентпен әрекеттер')}">${ico('more')}</button></div>`).join('')}</div>` : `<div class="cal-empty">${L('Студентов пока нет.', 'No students yet.', 'Әзірге студенттер жоқ.')}</div>`) +
-    `<button class="btn sec block" data-act="addUser">${ico('plus')}${L('Добавить студента', 'Add student', 'Студент қосу')}</button>`);
-}
 function vExamT(){
   const list = D.rooms.length ? `<div class="cards">${D.rooms.map(roomCardT).join('')}</div>`
     : emptyBox('door', L('Комнат пока нет', 'No rooms yet', 'Әзірге бөлмелер жоқ'), L('Создайте комнату экзамена и выберите, из каких частей она состоит.', 'Create an exam room and choose which parts it includes.', 'Емтихан бөлмесін жасап, оның қандай бөлімдерден тұратынын таңдаңыз.'), `<button class="btn" data-act="newRoom">${ico('plus')}${L('Создать комнату', 'Create room', 'Бөлме жасау')}</button>`);
   const waiting = D.queue.filter(q => q.status !== 'done').length;
   return header(L('Экзамен', 'Exam', 'Емтихан'), { sub:`${D.rooms.length} ${pl(D.rooms.length, 'комната', 'комнаты', 'комнат', 'room', 'rooms', 'бөлме')} · ${L('в очереди', 'in queue', 'кезекте')}: ${waiting}`,
       right: D.rooms.length ? `<button class="btn sm" data-act="newRoom">${ico('plus')}<span class="hide-s">${L('Новая комната', 'New room', 'Жаңа бөлме')}</span></button>` : '' }) +
-    cols(awayWidget(null) + W(L('Комнаты экзамена', 'Exam rooms', 'Емтихан бөлмелері'), list), queueWidget(null) + studentsWidget());
+    cols(awayWidget(null) + W(L('Комнаты экзамена', 'Exam rooms', 'Емтихан бөлмелері'), list), queueWidget(null));
 }
 
 /* --- комната (преподаватель): прогресс студентов + очередь --- */
@@ -2376,14 +2272,14 @@ function vRoomT(){
       <td class="num tot">${p.anyGraded ? `<b>${fmtN(p.total)}</b>` : '—'}<small> / ${fmtN(roomMax(r))}</small></td>
       <td class="acts">${canQ ? `<button class="btn sec sm" data-act="qAdd" data-room="${r.id}" data-user="${u.id}">${ico('users')}${L('В очередь', 'Queue', 'Кезекке')}</button>` : ''}<button class="btn sm" data-act="openGrade" data-room="${r.id}" data-user="${u.id}">${ico('pen')}${L('Проверить', 'Grade', 'Тексеру')}</button></td></tr>`; }).join('');
   const table = st.length ? `<div class="tbl-wrap"><table class="sheet prog"><thead><tr><th scope="col">${L('Студент', 'Student', 'Студент')}</th>${parts.map(k => `<th scope="col">${partShort(k)}<small>/ ${fmtN(r[k].max)}</small></th>`).join('')}<th scope="col">${L('Итого', 'Total', 'Барлығы')}</th><th scope="col"><span class="sr">${L('Действия', 'Actions', 'Әрекеттер')}</span></th></tr></thead><tbody>${rows}</tbody></table></div>`
-    : emptyBox('users', L('Студентов нет', 'No students', 'Студенттер жоқ'), L('Добавьте студентов на странице «Экзамен».', 'Add students on the Exam page.', '«Емтихан» бетінде студенттерді қосыңыз.'));
+    : emptyBox('users', L('Студентов нет', 'No students', 'Студенттер жоқ'), '');
   const info = W(L('Состав экзамена', 'Exam parts', 'Емтихан құрамы'), parts.map(k => `<div class="sumrow"><span class="sico sm">${ico(partIcon(k))}</span><span class="grow">${partName(k)}<small>${
       k === 'test' ? roomTests(r).map(t => esc(t.title)).join(', ') : k === 'writing' ? `${L('минимум', 'minimum', 'кемінде')} ${wordsTxt(r.writing.minWords)}${+r.writing.minutes > 0 ? ` · ${r.writing.minutes} ${L('мин', 'min', 'мин')}` : ''}` : `${r.speaking.minutes} ${L('мин на ответ', 'min per answer', 'мин жауапқа')}`}</small></span><b class="num">${fmtN(r[k].max)}</b></div>`).join('') +
     `<div class="sumtotal"><span class="grow">${L('Максимум', 'Maximum', 'Максимум')}</span><b class="num">${fmtN(roomMax(r))}</b></div>
     <div class="btns col"><button class="btn sec" data-act="toggleRoom" data-id="${r.id}">${ico(r.open ? 'lock' : 'unlock')}${r.open ? L('Закрыть экзамен', 'Close exam', 'Емтиханды жабу') : L('Открыть экзамен', 'Open exam', 'Емтиханды ашу')}</button>
     <button class="btn sec" data-act="editRoom" data-id="${r.id}">${ico('edit')}${L('Редактировать', 'Edit', 'Өңдеу')}</button></div>`);
   return header(r.title, { back:'exam', sub:`<span class="chip ${r.open ? 'ac' : ''}">${r.open ? L('Открыт для студентов', 'Open to students', 'Студенттер үшін ашық') : L('Закрыт', 'Closed', 'Жабық')}</span>` }) +
-    cols(awayWidget(r.id) + W(L('Прогресс студентов', 'Student progress', 'Студенттердің үлгерімі'), table) , queueWidget(r.id) + info);
+    awayWidget(r.id) + W(L('Прогресс студентов', 'Student progress', 'Студенттердің үлгерімі'), table) + `<div class="below">${queueWidget(r.id)}${info}</div>`;
 }
 
 /* --- проверка работы и выставление баллов --- */
@@ -2462,9 +2358,9 @@ function vScores(){
     return `<div class="logrow"><span class="sc ${'q-' + quality(pctOf(x.score, x.max))}">${fmtN(x.score)}</span><div class="grow"><b class="ell">${esc(u.name)} · ${partShort(x.part)}</b><small class="ell">${esc(r.title)} · ${fmtDate(x.gradedAt)}</small></div></div>`; }).join('');
   return header(L('Лист баллов', 'Score sheet', 'Ұпайлар парағы'), { sub:L('Баллы, выставленные по каждой части экзамена', 'Scores given for each part of the exam', 'Емтиханның әр бөлімі бойынша қойылған ұпайлар'),
       right:`<button class="ib" data-act="printSheet" aria-label="${L('Печать', 'Print', 'Басып шығару')}" title="${L('Печать', 'Print', 'Басып шығару')}">${ico('print')}</button><button class="btn sm" data-act="csv">${ico('down')}CSV</button>` }) +
-    tiles + chips + cols(rooms.length ? rooms.map(r => W(esc(r.title), scoreTable(r), { right:`<span class="chip">${L('макс.', 'max', 'макс.')} ${fmtN(roomMax(r))}</span>` })).join('') : W('', emptyBox('table', L('Комнат нет', 'No rooms', 'Бөлмелер жоқ'), '')),
-      W(L('Последние оценки', 'Latest scores', 'Соңғы бағалар'), log || `<div class="cal-empty">${L('Баллы ещё не выставлялись.', 'No scores given yet.', 'Ұпайлар әлі қойылмаған.')}</div>`) +
-      W(L('Цвета', 'Colours', 'Түстер'), `<div class="legend col"><span><i class="b-ok"></i>${L('от 75% — высокий балл', '75%+ — high score', '75%-дан бастап — жоғары ұпай')}</span><span><i class="b-mid"></i>${L('50–74% — средний балл', '50–74% — average score', '50–74% — орташа ұпай')}</span><span><i class="b-low"></i>${L('ниже 50%', 'below 50%', '50%-дан төмен')}</span></div>`));
+    tiles + chips + (rooms.length ? rooms.map(r => W(esc(r.title), scoreTable(r), { right:`<span class="chip">${L('макс.', 'max', 'макс.')} ${fmtN(roomMax(r))}</span>` })).join('') : W('', emptyBox('table', L('Комнат нет', 'No rooms', 'Бөлмелер жоқ'), ''))) +
+      `<div class="below">` + W(L('Последние оценки', 'Latest scores', 'Соңғы бағалар'), log || `<div class="cal-empty">${L('Баллы ещё не выставлялись.', 'No scores given yet.', 'Ұпайлар әлі қойылмаған.')}</div>`) +
+      W(L('Цвета', 'Colours', 'Түстер'), `<div class="legend col"><span><i class="b-ok"></i>${L('от 75% — высокий балл', '75%+ — high score', '75%-дан бастап — жоғары ұпай')}</span><span><i class="b-mid"></i>${L('50–74% — средний балл', '50–74% — average score', '50–74% — орташа ұпай')}</span><span><i class="b-low"></i>${L('ниже 50%', 'below 50%', '50%-дан төмен')}</span></div>`) + `</div>`;
 }
 function downloadCSV(){
   const sep = ';', q = v => `"${String(v).replace(/"/g, '""')}"`;
@@ -2558,7 +2454,6 @@ function vRoomEditor(){
   return header(S.params.isNew ? L('Новая комната', 'New room', 'Жаңа бөлме') : L('Комната экзамена', 'Exam room', 'Емтихан бөлмесі'), { back:'editorList', sub:`${L('Максимум', 'Maximum', 'Максимум')}: <span id="rMax">${fmtN(roomMax(d))}</span> ${L('баллов', 'points', 'ұпай')}` }) +
     `<div class="card"><div class="card-h"><h3>${L('Основное', 'General', 'Негізгі')}</h3></div>
       <label class="f" for="rf-title">${L('Название', 'Title', 'Атауы')}</label><input class="field" id="rf-title" value="${esc(d.title)}" data-rpath="title" placeholder="${L('Например: Экзамен, группа 101', 'e.g. Final exam, group 101', 'Мысалы: Емтихан, 101 топ')}">
-      <label class="f" for="rf-desc">${L('Описание для студентов', 'Description for students', 'Студенттерге арналған сипаттама')}</label><textarea class="field" id="rf-desc" data-rpath="description" rows="2">${esc(d.description)}</textarea>
       ${sw('open', d.open, L('Открыт для студентов', 'Open to students', 'Студенттер үшін ашық'), L('Закрытый экзамен виден только тем, кто уже начал', 'A closed exam is visible only to those who started it', 'Жабық емтиханды тек бастап қойғандар ғана көреді'))}</div>
     <div class="card"><div class="card-h"><h3>${L('Из чего состоит экзамен', 'What the exam includes', 'Емтихан неден тұрады')}</h3></div>
       <div class="presets">${PRESETS.map(([id, ru, en, ps, kk]) => `<button class="${ps.join() === cur ? 'on' : ''}" data-act="preset" data-p="${id}">${L(ru, en, kk)}</button>`).join('')}</div>
@@ -2576,103 +2471,6 @@ function vRoomEditor(){
 }
 
 /* --- студенты --- */
-function userForm(u){
-  formModal(u ? L('Изменить студента', 'Edit student', 'Студентті өзгерту') : L('Новый студент', 'New student', 'Жаңа студент'), [
-    { k:'name', label:L('Имя и фамилия', 'Full name', 'Аты-жөні') }, { k:'login', label:L('Логин', 'Login', 'Логин') }, { k:'password', label:L('Пароль', 'Password', 'Құпиясөз') }],
-    u ? { name:u.name, login:u.login, password:u.password } : {}, v => {
-      if(!v.name || !v.login || !v.password) return L('Заполните все поля', 'Fill in all fields', 'Барлық өрісті толтырыңыз');
-      if(D.users.some(x => x !== u && x.login.toLowerCase() === v.login.toLowerCase())) return L('Такой логин уже занят', 'This login is already taken', 'Бұл логин бос емес');
-      if(u) Object.assign(u, v); else D.users.push({ id:uid(), name:v.name, login:v.login, password:v.password, role:'student' });
-      persist(); render(); toast(u ? L('Данные студента обновлены', 'Student updated', 'Студент деректері жаңартылды') : L('Студент добавлен', 'Student added', 'Студент қосылды'));
-    });
-}
-function userMenu(id){
-  const u = userById(id); if(!u) return;
-  sheet(u.name, [
-    { icon:'edit', label:L('Изменить', 'Edit', 'Өзгерту'), fn:() => userForm(u) },
-    { icon:'trash', label:L('Удалить', 'Delete', 'Жою'), danger:true, fn:() => ask(L('Удалить студента?', 'Delete student?', 'Студентті жою керек пе?'), L('Удалятся его попытки, работы, место в очереди и баллы.', 'Their attempts, work, queue place and scores will be deleted.', 'Оның әрекеттері, жұмыстары, кезектегі орны және ұпайлары жойылады.'), L('Удалить', 'Delete', 'Жою'), () => {
-      D.users = D.users.filter(x => x !== u); ['attempts','writings','queue','grades','timers'].forEach(k => D[k] = D[k].filter(x => x.userId !== id)); persist(); render(); toast(L('Студент удалён', 'Student deleted', 'Студент жойылды')); }, {danger:true}) }
-  ]);
-}
-
-
-/* ========== ОБУЧЕНИЕ: правила, идиомы, слова, проверка знаний ========== */
-const LEARN_TABS = [['rules', 'Правила', 'Rules', 'book', 'Ережелер'], ['idioms', 'Идиомы', 'Idioms', 'quote', 'Идиомалар'], ['words', 'Слова', 'Words', 'speech', 'Сөздер'], ['check', 'Проверить знания', 'Check yourself', 'bulb', 'Білімді тексеру']];
-const LEARN_FIELDS = {
-  rules:[{ k:'title', label:L('Название правила', 'Rule title', 'Ереже атауы') }, { k:'body', label:L('Объяснение', 'Explanation', 'Түсіндірме'), multi:true, rows:5 }, { k:'example', label:L('Примеры', 'Examples', 'Мысалдар'), multi:true }],
-  idioms:[{ k:'phrase', label:L('Идиома', 'Idiom', 'Идиома') }, { k:'meaning', label:L('Значение', 'Meaning', 'Мағынасы') }, { k:'example', label:L('Пример', 'Example', 'Мысал'), multi:true, rows:2 }],
-  words:[{ k:'word', label:L('Слово', 'Word', 'Сөз') }, { k:'translation', label:L('Перевод', 'Translation', 'Аудармасы') }, { k:'example', label:L('Пример', 'Example', 'Мысал'), multi:true, rows:2 }]
-};
-const learnFields = k => LEARN_FIELDS[k].map(f => Object.assign({}, f, { label: ({title:L('Название правила', 'Rule title', 'Ереже атауы'), body:L('Объяснение', 'Explanation', 'Түсіндірме'), example:L('Примеры', 'Examples', 'Мысалдар'), phrase:L('Идиома', 'Idiom', 'Идиома'), meaning:L('Значение', 'Meaning', 'Мағынасы'), word:L('Слово', 'Word', 'Сөз'), translation:L('Перевод', 'Translation', 'Аудармасы')})[f.k] }));
-const learnMatch = (it, q) => !q || Object.values(it).some(v => typeof v === 'string' && v.toLowerCase().includes(q));
-const editBtns = (k, id) => isT() ? `<span class="ed-btns"><button class="ib sm ghost" data-act="learnEdit" data-k="${k}" data-id="${id}" aria-label="${L('Изменить', 'Edit', 'Өзгерту')}">${ico('edit')}</button><button class="ib sm ghost danger" data-act="learnDel" data-k="${k}" data-id="${id}" aria-label="${L('Удалить', 'Delete', 'Жою')}">${ico('trash')}</button></span>` : '';
-function learnList(){
-  const k = S.learnTab, q = S.learnQ.trim().toLowerCase(), items = (D.learn[k] || []).filter(it => learnMatch(it, q));
-  if(!items.length) return emptyBox('search', q ? L('Ничего не найдено', 'Nothing found', 'Ештеңе табылмады') : L('Пока пусто', 'Nothing here yet', 'Әзірге бос'), q ? L('Попробуйте другое слово.', 'Try another word.', 'Басқа сөзді байқап көріңіз.') : '');
-  if(k === 'rules') return items.map((r, i) => `<details class="rule" ${i === 0 && !q ? 'open' : ''}><summary><span class="grow">${esc(r.title)}</span>${ico('chevD', 'chev')}</summary>
-      <div class="rule-b"><div class="rule-t">${esc(r.body)}</div>${r.example ? `<div class="ex"><b>${L('Пример', 'Example', 'Мысал')}</b>${esc(r.example)}</div>` : ''}${editBtns('rules', r.id)}</div></details>`).join('');
-  if(k === 'idioms') return `<div class="cards idioms">${items.map(it => `<div class="card idiom"><div class="row"><p class="ttl grow">${esc(it.phrase)}</p>${editBtns('idioms', it.id)}</div><div class="mean">${esc(it.meaning)}</div>${it.example ? `<div class="ex-i">${esc(it.example)}</div>` : ''}</div>`).join('')}</div>`;
-  return `<div class="wlist">${items.map(w => `<div class="wrow"><div class="grow"><b>${esc(w.word)}</b><span class="tr">${esc(w.translation)}</span>${w.example ? `<small>${esc(w.example)}</small>` : ''}</div>${editBtns('words', w.id)}</div>`).join('')}</div>`;
-}
-// карточки для слов
-function fcWidget(){
-  const ws = D.learn.words; if(!ws.length) return '';
-  if(!S.fc || S.fc.order.length !== ws.length) S.fc = { i:0, flip:false, order:ws.map((_, j) => j) };
-  const f = S.fc, w = ws[f.order[f.i]] || ws[0];
-  return W(L('Карточки', 'Flashcards', 'Карточкалар'), `<button class="flash ${f.flip ? 'flip' : ''}" data-act="fcFlip" aria-live="polite">${f.flip
-      ? `<span class="fl-b">${esc(w.translation)}</span>${w.example ? `<small>${esc(w.example)}</small>` : ''}`
-      : `<span class="fl-f">${esc(w.word)}</span><small>${L('Нажмите, чтобы увидеть перевод', 'Tap to see the translation', 'Аударманы көру үшін басыңыз')}</small>`}</button>
-    <div class="fc-nav"><button class="ib" data-act="fcPrev" aria-label="${L('Назад', 'Previous', 'Артқа')}" ${f.i === 0 ? 'disabled' : ''}>${ico('back')}</button><span class="num">${f.i + 1} / ${ws.length}</span>
-      <button class="ib" data-act="fcShuffle" aria-label="${L('Перемешать', 'Shuffle', 'Араластыру')}" title="${L('Перемешать', 'Shuffle', 'Араластыру')}">${ico('shuffle')}</button><button class="ib" data-act="fcNext" aria-label="${L('Дальше', 'Next', 'Әрі қарай')}" ${f.i >= ws.length - 1 ? 'disabled' : ''}>${ico('chevR')}</button></div>`);
-}
-// проверка знаний: 10 вопросов по словам и идиомам
-function makeQuiz(){
-  const pool = [];
-  D.learn.words.forEach(w => pool.push({ kind:'word', q:w.word, a:w.translation, all:D.learn.words.map(x => x.translation) }));
-  D.learn.idioms.forEach(i => pool.push({ kind:'idiom', q:i.phrase, a:i.meaning, all:D.learn.idioms.map(x => x.meaning) }));
-  const qs = shuffle(pool).map(it => { const wrong = shuffle([...new Set(it.all.filter(x => x !== it.a))]).slice(0, 3); const options = shuffle([it.a, ...wrong]);
-    return { kind:it.kind, prompt:it.q, options, correct:options.indexOf(it.a) }; }).filter(x => x.options.length >= 2).slice(0, 10);
-  return { qs, i:0, picks:[], done:false };
-}
-function quizBody(){
-  const best = D.quiz[ME.id];
-  if(!S.quiz) return `<div class="quiz-start"><span class="sico lg">${ico('bulb')}</span><h3>${L('Проверьте себя', 'Test yourself', 'Өзіңізді тексеріңіз')}</h3>
-    <p>${L('10 вопросов по словам и идиомам из этого раздела. Результат не влияет на экзамен.', '10 questions on the words and idioms from this section. The result does not affect the exam.', 'Осы бөлімдегі сөздер мен идиомалар бойынша 10 сұрақ. Нәтиже емтиханға әсер етпейді.')}</p>
-    ${best ? `<div class="sub">${L('Лучший результат', 'Best result', 'Үздік нәтиже')}: <b>${best.best} / ${best.of}</b> · ${L('последний', 'last', 'соңғысы')}: ${best.last} / ${best.of}</div>` : ''}
-    <button class="btn" data-act="quizStart">${ico('play')}${L('Начать проверку', 'Start the check', 'Тексеруді бастау')}</button></div>`;
-  const z = S.quiz;
-  if(!z.qs.length) return emptyBox('bulb', L('Мало материала', 'Not enough material', 'Материал аз'), L('Добавьте слова и идиомы, чтобы составить проверку.', 'Add words and idioms to build a check.', 'Тексеру құрастыру үшін сөздер мен идиомалар қосыңыз.'));
-  if(z.done){ const ok = z.picks.filter((p, j) => p === z.qs[j].correct).length;
-    return `<div class="quiz-res"><div class="big num ${Q_CLS[quality(pctOf(ok, z.qs.length))]}">${ok} / ${z.qs.length}</div><div class="ql">${qLabel(quality(pctOf(ok, z.qs.length)))}</div>
-      ${z.qs.map((q, j) => z.picks[j] === q.correct ? '' : `<div class="card rv st-wrong"><div class="rv-q"><b>${esc(q.prompt)}</b></div><div class="rv-a"><span>${L('Ваш ответ', 'Your answer', 'Сіздің жауабыңыз')}</span><b>${esc(q.options[z.picks[j]])}</b></div><div class="rv-a ok"><span>${L('Правильно', 'Correct', 'Дұрыс жауап')}</span><b>${esc(q.options[q.correct])}</b></div></div>`).join('')}
-      <button class="btn" data-act="quizStart">${ico('refresh')}${L('Пройти ещё раз', 'Try again', 'Тағы өту')}</button></div>`; }
-  const q = z.qs[z.i], pick = z.picks[z.i];
-  return `<div class="quiz"><div class="qz-top"><span class="sub">${L('Вопрос', 'Question', 'Сұрақ')} ${z.i + 1} ${L('из', 'of', '/')} ${z.qs.length}</span><div class="tline"><i style="width:${(z.i) / z.qs.length * 100}%"></i></div></div>
-    <div class="qtext">${q.kind === 'word' ? L('Как переводится слово', 'What does the word mean:', 'Сөздің аудармасы қандай:') : L('Что означает идиома', 'What does the idiom mean:', 'Идиоманың мағынасы қандай:')} <b>«${esc(q.prompt)}»</b>?</div>
-    ${q.options.map((o, j) => `<button class="opt ${pick == null ? '' : j === q.correct ? 'right' : j === pick ? 'wrong' : 'dim'}" data-act="quizPick" data-j="${j}" ${pick != null ? 'disabled' : ''}><span class="mk"></span><span>${esc(o)}</span></button>`).join('')}
-    ${pick != null ? `<div class="qz-fb ${pick === q.correct ? 'c-ac' : 'c-low'}">${pick === q.correct ? L('Верно!', 'Correct!', 'Дұрыс!') : L('Неверно. Правильный ответ отмечен зелёным.', 'Wrong. The correct answer is marked in green.', 'Қате. Дұрыс жауап жасылмен белгіленген.')}</div>
-      <button class="btn" data-act="quizNext">${z.i === z.qs.length - 1 ? L('Показать результат', 'See the result', 'Нәтижені көрсету') : L('Дальше', 'Next', 'Әрі қарай')} ${ico('chevR')}</button>` : ''}</div>`;
-}
-function vLearn(){
-  const k = S.learnTab;
-  const cnt = t => t === 'check' ? '' : `<span class="cnt">${(D.learn[t] || []).length}</span>`;
-  const seg = `<div class="seg" role="tablist">${LEARN_TABS.map(([t, ru, en, , kk]) => `<button class="${k === t ? 'on' : ''}" data-act="learnTab" data-t="${t}" role="tab">${L(ru, en, kk)} ${cnt(t)}</button>`).join('')}</div>`;
-  const tools = k === 'check' ? '' : `<div class="row ltools"><div class="search grow">${ico('search')}<input class="field" type="search" placeholder="${L('Поиск', 'Search', 'Іздеу')}" value="${esc(S.learnQ)}" data-inp="learnQ" aria-label="${L('Поиск', 'Search', 'Іздеу')}"></div>
-    ${isT() ? `<button class="btn sm" data-act="learnAdd" data-k="${k}">${ico('plus')}<span class="hide-s">${L('Добавить', 'Add', 'Қосу')}</span></button>` : ''}</div>`;
-  const main = W('', seg + tools + (k === 'check' ? quizBody() : `<div id="learnList">${learnList()}</div>`));
-  const best = D.quiz[ME.id];
-  const side = k === 'words' ? fcWidget() : k === 'check' ? W(L('Совет', 'Tip', 'Кеңес'), `<p class="w-p">${L('Повторяйте слова на карточках, а затем возвращайтесь к проверке — так запоминается лучше.', 'Review the flashcards, then come back to the check — it helps you remember.', 'Сөздерді карточкалармен қайталап, содан кейін тексеруге оралыңыз — осылай жақсырақ есте қалады.')}</p><button class="btn sec block" data-act="learnTab" data-t="words">${ico('speech')}${L('К карточкам', 'To flashcards', 'Карточкаларға')}</button>`)
-    : W(L('Проверить знания', 'Check yourself', 'Білімді тексеру'), `<p class="w-p">${L('10 вопросов по словам и идиомам.', '10 questions on words and idioms.', 'Сөздер мен идиомалар бойынша 10 сұрақ.')}</p>${best ? `<div class="sub" style="margin-bottom:12px">${L('Лучший результат', 'Best result', 'Үздік нәтиже')}: <b>${best.best} / ${best.of}</b></div>` : ''}<button class="btn block" data-act="learnTab" data-t="check">${ico('bulb')}${L('Начать', 'Start', 'Бастау')}</button>`);
-  return header(L('Обучение', 'Learning', 'Оқу'), { sub:L('Правила, идиомы и слова для подготовки к экзамену', 'Rules, idioms and vocabulary to prepare for the exam', 'Емтиханға дайындалуға арналған ережелер, идиомалар және сөздер') }) + cols(main, side);
-}
-function learnEditForm(k, it){
-  formModal(it ? L('Изменить', 'Edit', 'Өзгерту') : L('Добавить', 'Add', 'Қосу'), learnFields(k), it || {}, v => {
-    const need = LEARN_FIELDS[k].slice(0, 2).map(f => f.k);
-    if(need.some(n => !v[n])) return L('Заполните первые два поля', 'Fill in the first two fields', 'Алғашқы екі өрісті толтырыңыз');
-    if(it) Object.assign(it, v); else D.learn[k].unshift(Object.assign({ id:uid() }, v));
-    persist(); S.fc = null; render(); toast(it ? L('Сохранено', 'Saved', 'Сақталды') : L('Добавлено', 'Added', 'Қосылды'));
-  });
-}
 
 
 /* ---------- обработчики ---------- */
@@ -2784,8 +2582,6 @@ const ACT = {
     const k = D.rooms.findIndex(r => r.id === d.id); if(k >= 0) D.rooms[k] = d; else D.rooms.unshift(d);
     persist(); S.rdraft = null; S.edTab = 'rooms'; toast(L('Комната сохранена', 'Room saved', 'Бөлме сақталды')); goBack('editorList');
   },
-  addUser: () => userForm(null),
-  userMenu: el => userMenu(el.dataset.id),
   // редактор тестов
   edTab: el => { S.edTab = el.dataset.t; render(); },
   newTest: () => newDraft(),
@@ -2834,27 +2630,10 @@ const ACT = {
   prevQ: () => moveTo(S.run.pos - 1),
   nextQ: () => moveTo(S.run.pos + 1),
   finish: () => finishAsk(),
-  // обучение
-  learnTab: el => { S.learnTab = el.dataset.t; S.learnQ = ''; render(); },
-  learnAdd: el => learnEditForm(el.dataset.k, null),
-  learnEdit: el => learnEditForm(el.dataset.k, (D.learn[el.dataset.k] || []).find(x => x.id === el.dataset.id)),
-  learnDel: el => { const k = el.dataset.k, it = (D.learn[k] || []).find(x => x.id === el.dataset.id); if(!it) return;
-    ask(L('Удалить запись?', 'Delete this item?', 'Жазбаны жою керек пе?'), it.title || it.phrase || it.word || '', L('Удалить', 'Delete', 'Жою'), () => { D.learn[k] = D.learn[k].filter(x => x !== it); persist(); S.fc = null; render(); }, {danger:true}); },
-  fcFlip: () => { S.fc.flip = !S.fc.flip; render(); },
-  fcNext: () => { if(S.fc.i < S.fc.order.length - 1){ S.fc.i++; S.fc.flip = false; render(); } },
-  fcPrev: () => { if(S.fc.i > 0){ S.fc.i--; S.fc.flip = false; render(); } },
-  fcShuffle: () => { shuffle(S.fc.order); S.fc.i = 0; S.fc.flip = false; render(); },
-  quizStart: () => { S.quiz = makeQuiz(); render(); },
-  quizPick: el => { const z = S.quiz; if(!z || z.picks[z.i] != null) return; z.picks[z.i] = +el.dataset.j; render(); },
-  quizNext: () => { const z = S.quiz; if(!z) return;
-    if(z.i < z.qs.length - 1){ z.i++; render(); return; }
-    z.done = true; const ok = z.picks.filter((p, j) => p === z.qs[j].correct).length, prev = D.quiz[ME.id];
-    D.quiz[ME.id] = { best:Math.max(ok, prev && prev.of === z.qs.length ? prev.best : 0), last:ok, of:z.qs.length, at:Date.now() }; persist(); render(); }
 };
 const INP = {
   essay: el => { draftSet(el.dataset.room, el.value); const r = roomById(el.dataset.room), c = wc(el.value), w = document.getElementById('wc');
     if(w && r){ w.textContent = wordsTxt(c) + ' · ' + L('минимум', 'minimum', 'кемінде') + ' ' + r.writing.minWords; w.className = c < r.writing.minWords ? 'c-mid' : 'c-ac'; } },
-  learnQ: el => { S.learnQ = el.value; const b = document.getElementById('learnList'); if(b) b.innerHTML = learnList(); },
   aInput: el => { S.run.answers[curI()] = el.value; saveRun();
     const dot = app.querySelector('.qd.cur'); if(dot) dot.classList.toggle('done', el.value.trim() !== '');
     const sub = document.getElementById('answered'); if(sub) sub.textContent = L('Отвечено ', 'Answered ', 'Жауап берілді ') + answeredCount(S.run) + L(' из ', ' of ', ' / ') + S.run.order.length; },
@@ -2907,7 +2686,7 @@ document.addEventListener('keydown', e => {
 });
 
 /* ---------- синхронизация между вкладками ---------- */
-const LIVE = { exam:1, room:1, grade:1, scores:1, results:1, learn:1, editorList:1, result:1 };
+const LIVE = { exam:1, room:1, grade:1, scores:1, results:1, editorList:1, result:1 };
 const fieldFocused = () => { const a = document.activeElement; return !!a && app.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.type !== 'checkbox' && a.type !== 'radio'; };
 window.addEventListener('storage', e => {
   if(e.key === LS_KEY){
@@ -2967,7 +2746,7 @@ window.addEventListener('pagehide', () => { try{ tmPresence(true); }catch(e){} }
   if(ME) applyTheme(); // настройки пользователя (размер текста, контраст, анимация)
   if(ME){ const pr = loadRun(); S.pendingRun = pr && testById(pr.test.id) ? pr : null; }
   let hs = null; try{ hs = history.state; }catch(e){}
-  const VIEWS = ['exam','room','result','results','learn','editorList','editor','roomEditor','scores','grade'];
+  const VIEWS = ['exam','room','result','results','editorList','editor','roomEditor','scores','grade'];
   if(ME && hs && VIEWS.includes(hs.view)){ S.view = hs.view; S.params = hs.params || {}; render(); return; }
   S.view = ME ? 'exam' : 'login';
   try{ history.replaceState({view:S.view, params:{}, depth:(hs && hs.depth) || 0}, ''); }catch(e){ HIST = false; }
