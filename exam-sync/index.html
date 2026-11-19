@@ -198,6 +198,18 @@ header.top{display:flex;align-items:center;gap:8px;padding:22px 0 16px}
 .xt-more{width:40px;height:40px;border-radius:999px;border:0;background:rgba(255,255,255,.9);color:#1f2933;display:grid;place-items:center;cursor:pointer}
 .xpub>.meta{margin-top:10px}
 .xpub>.chips{margin-top:6px}
+/* «Опубликовать экзамен»: компактный листаемый список готовых экзаменов в цвете предмета */
+.xlist{display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto;overscroll-behavior:contain;padding-right:4px}
+.xrow{display:flex;align-items:center;gap:10px;flex-shrink:0;padding:10px 10px 10px 14px;border-radius:12px;background:var(--sc);color:#fff}
+.xrow b{display:block;font-size:15px;font-weight:700;color:#fff}
+.xrow small{display:block;font-size:12.5px;opacity:.85;margin-top:2px}
+.xrow .grow{min-width:0}
+.xr-ed,.xr-go{flex-shrink:0;border:0;cursor:pointer;border-radius:999px;display:inline-flex;align-items:center;justify-content:center}
+.xr-ed{width:34px;height:34px;background:rgba(255,255,255,.18);color:#fff}
+.xr-ed:hover{background:rgba(255,255,255,.3)}
+.xr-ed .i{width:16px;height:16px}
+.xr-go{height:34px;padding:0 14px;background:#fff;color:var(--sc);font-size:13.5px;font-weight:800}
+.xr-go:hover{background:rgba(255,255,255,.88)}
 /* вкладки предметов у студента */
 .subj-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
 .subj-tabs button{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--s2);color:var(--tx);font-weight:700;font-size:14px;cursor:pointer}
@@ -2908,10 +2920,10 @@ function roomCardT(r){
   const st = roomStudents(r), prs = st.map(u => progress(r, u.id));
   const started = prs.filter(p => p.started).length, sub = prs.filter(p => p.submitted).length, toGrade = prs.reduce((s, p) => s + p.toGrade, 0);
   const qn = D.queue.filter(q => q.roomId === r.id && q.status !== 'done').length;
-  return `<div class="card tap" role="button" tabindex="0" data-act="openRoom" data-id="${r.id}">
-    ${strip(roomTimeShort(r), r.title, null)}
-    <div class="chips">${roomParts(r).map(k => `<span class="chip">${ico(partIcon(k))}${partShort(k)}</span>`).join('')}${roomCountdown(r)}${roomTimeShort(r) ? `<span class="chip ${roomStateCls(r)}">${ico('clock')}${roomTimeLabel(r)}</span>` : ''}<span class="chip">${ico('users')}${esc(audienceText(r))}</span>${toGrade ? `<span class="chip mid">${ico('pen')}${L('Проверить', 'To grade', 'Тексеру')}: ${toGrade}</span>` : ''}${qn ? `<span class="chip ac">${ico('users')}${L('Очередь', 'Queue', 'Кезек')}: ${qn}</span>` : ''}</div>
-    <div class="meta">${L('Начали', 'Started', 'Бастағандар')}: ${started}/${st.length}<span class="dot">·</span>${L('Сдали всё', 'Fully submitted', 'Толық тапсырғандар')}: ${sub}</div></div>`;
+  // плитка в том же виде, что у студента (шапка цвета предмета + обложка); под ней — кому, срок и ход сдачи
+  return `<div class="xpub">${examTile(r, `<span class="xt-go">${ico('eye')}${L('Открыть', 'Open', 'Ашу')}</span>`, { tap:'openRoom' })}
+    <div class="meta">${L('Начали', 'Started', 'Бастағандар')}: ${started}/${st.length}<span class="dot">·</span>${L('Сдали всё', 'Fully submitted', 'Толық тапсырғандар')}: ${sub}</div>
+    <div class="chips">${roomCountdown(r)}${roomTimeShort(r) ? `<span class="chip ${roomStateCls(r)}">${ico('clock')}${roomTimeLabel(r)}</span>` : `<span class="chip">${ico('clock')}${L('бессрочно', 'no deadline', 'мерзімсіз')}</span>`}<span class="chip">${ico('users')}${esc(audienceText(r))}</span>${toGrade ? `<span class="chip mid">${ico('pen')}${L('Проверить', 'To grade', 'Тексеру')}: ${toGrade}</span>` : ''}${qn ? `<span class="chip ac">${ico('users')}${L('Очередь', 'Queue', 'Кезек')}: ${qn}</span>` : ''}</div></div>`;
 }
 const qRank = { live:0, called:1, waiting:2 };
 function queueItem(q, showRoom){
@@ -2947,7 +2959,7 @@ function awayWidget(roomId){
 }
 function vExamT(){
   const rooms = myRooms();
-  const list = rooms.length ? `<div class="cards">${rooms.map(roomCardT).join('')}</div>`
+  const list = rooms.length ? `<div class="xtiles">${rooms.map(roomCardT).join('')}</div>`
     : emptyBox('door', L('Пока ничего не выдано', 'Nothing assigned yet', 'Әзірге ештеңе берілмеген'), L('Опубликованные экзамены появятся здесь: кому, на какой срок и сколько уже сдали.', 'Published exams appear here: to whom, for how long and how many have submitted.', 'Жарияланған емтихандар осында шығады: кімге, қандай мерзімге және қаншасы тапсырды.'));
   const waiting = D.queue.filter(q => q.status !== 'done' && ownedByMe(roomById(q.roomId))).length;
   return header(L('Задания для студентов', 'Student assignments', 'Студенттерге тапсырмалар'), { sub:`${subjName(ME.subject)} · ${L('Выдано экзаменов', 'Exams assigned', 'Берілген емтихандар')}: ${rooms.length} · ${L('в очереди', 'in queue', 'кезекте')}: ${waiting}` }) +
@@ -3234,9 +3246,10 @@ const xRoomExam = d => d.test.testIds.map(testById).find(isExamT) || [d.writing.
 const xSkillChips = e => `<div class="chips">${XM.activeSections(e).filter(k => xGraded(e, k).length).map(k => `<span class="chip">${ico(xSecIcon(k))}${esc(xSecLabel(k))} ${xGraded(e, k).length}</span>`).join('')}</div>`;
 function vPublish(){
   const ex = xReady() ? examRecords() : [];
-  const pick = ex.length ? `<div class="cards">${ex.map(t => { const used = xRoomsUsing(t.id).length;
-      return `<div class="card"><p class="ttl ell">${esc(t.title)}</p><div class="meta">${t.exam.subtitle ? esc(t.exam.subtitle) + '<span class="dot">·</span>' : ''}${nQ(xAllTasks(t.exam))}<span class="dot">·</span>${timeTxt(t)}${used ? `<span class="dot">·</span>${L('опубликован', 'published', 'жарияланған')}: ${used}` : ''}</div>${xSkillChips(t.exam)}
-        <div class="btns" style="margin-top:14px;flex-wrap:wrap"><button class="btn sm" data-act="pubExam" data-id="${t.id}">${ico('door')}${L('Опубликовать', 'Publish', 'Жариялау')}</button><button class="btn sec sm" data-act="pubEdit" data-id="${t.id}">${ico('edit')}${L('Изменить задания', 'Edit tasks', 'Тапсырмаларды өзгерту')}</button></div></div>`; }).join('')}</div>`
+  // готовые экзамены — компактный листаемый список без картинок; плашка в цвете предмета преподавателя
+  const pick = ex.length ? `<div class="xlist" style="--sc:${subjOf(ME.subject).color}">${ex.map(t => { const used = xRoomsUsing(t.id).length;
+      return `<div class="xrow"><div class="grow"><b class="ell">${esc(t.title)}</b><small class="ell">${nQ(xAllTasks(t.exam))} · ${timeTxt(t)}${used ? ` · ${L('опубликован', 'published', 'жарияланған')}: ${used}` : ''}</small></div>
+        <button type="button" class="xr-ed" data-act="pubEdit" data-id="${t.id}" aria-label="${L('Изменить задания', 'Edit tasks', 'Тапсырмаларды өзгерту')}" title="${L('Изменить задания', 'Edit tasks', 'Тапсырмаларды өзгерту')}">${ico('edit')}</button><button type="button" class="xr-go" data-act="pubExam" data-id="${t.id}">${L('Опубликовать', 'Publish', 'Жариялау')}</button></div>`; }).join('')}</div>`
     : emptyBox('doc', L('Готовых экзаменов нет', 'No ready exams', 'Дайын емтихандар жоқ'), L('Создайте экзамен или загрузите документ Word во вкладке «Редактор» — он появится здесь.', 'Create an exam or upload a Word document in the Editor tab — it will appear here.', '«Редактор» қойындысында емтихан жасаңыз немесе Word құжатын жүктеңіз — ол осында шығады.'), `<button class="btn" data-act="tab" data-v="xbList">${ico('doc')}${L('Открыть редактор', 'Open the editor', 'Редакторды ашу')}</button>`);
   const mine = myRooms();
   // опубликованные — в том же виде, что у студента (шапка цвета предмета + обложка), под плиткой — кому и на какой срок
